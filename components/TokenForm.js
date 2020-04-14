@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { TextField, Button, Toast, Frame } from "@shopify/polaris";
 import { LoadingText } from "../components/Loading";
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 
 function TokenForm(props) {
