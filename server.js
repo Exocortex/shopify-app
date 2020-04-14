@@ -7,6 +7,7 @@ const { verifyRequest } = require("@shopify/koa-shopify-auth");
 const session = require("koa-session");
 const Router = require("koa-router");
 const router = new Router();
+const fetch = require('node-fetch');
 
 dotenv.config();
 const { default: graphQLProxy } = require("@shopify/koa-shopify-graphql-proxy");
