@@ -5,6 +5,7 @@ import ResourceListWithProducts from "../components/ResourceList";
 import TokenForm from '../components/TokenForm';
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+const fetch = require('node-fetch');
 
 // Get the shop's threekit metafield
 const GET_TK_METAFIELD = gql`
