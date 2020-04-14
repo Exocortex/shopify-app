@@ -5,7 +5,11 @@ import ResourceListWithProducts from "../components/ResourceList";
 import TokenForm from '../components/TokenForm';
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+
 import fetch from 'node-fetch';
+import { createHttpLink } from 'apollo-link-http';
+
+const link = createHttpLink({ uri: '/graphql', fetch: fetch });
 
 // Get the shop's threekit metafield
 const GET_TK_METAFIELD = gql`

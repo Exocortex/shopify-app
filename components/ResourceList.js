@@ -6,6 +6,10 @@ import ThreekitForm from "./ThreekitForm";
 import { Redirect } from "@shopify/app-bridge/actions";
 import { Context } from "@shopify/app-bridge-react";
 import { LoadingScreen } from "../components/Loading";
+import fetch from 'node-fetch';
+import { createHttpLink } from 'apollo-link-http';
+
+const link = createHttpLink({ uri: '/graphql', fetch: fetch });
 
 const GET_PRODUCTS_BY_ID = gql`
   query getProducts($ids: [ID!]!) {
