@@ -6,7 +6,7 @@ import '@shopify/polaris/styles.css';
 import translations from '@shopify/polaris/locales/en.json';
 import Cookies from 'js-cookie';
 import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient({
   fetchOptions: {
