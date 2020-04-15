@@ -870,7 +870,6 @@ function TokenForm(props) {
       return response.json();
     }).then(function (json) {
       setTkToken(json.data.metafield.value.replace("'", ""));
-      console.log(json.data.metafield.value);
       setIsSaved(true);
     });
   };

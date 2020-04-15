@@ -89,7 +89,7 @@ app.prepare().then(() => {
             metafield: {
               namespace: "threekit",
               key: "token",
-              value: `'${ctx.params.value}'`,
+              value: `${ctx.params.value}`,
               value_type: "string"
             }
           })

@@ -29,7 +29,6 @@ function TokenForm(props) {
       .then(response => response.json())
       .then(json => {
         setTkToken(json.data.metafield.value.replace(`'`, ""));
-        console.log(json.data.metafield.value)
         setIsSaved(true);
       });
   };
