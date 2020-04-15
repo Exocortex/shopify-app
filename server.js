@@ -21,21 +21,6 @@ const handle = app.getRequestHandler();
 
 const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
-// Error test
-import { createHttpLink } from 'apollo-link-http'
-import { InMemoryCache } from 'apollo-cache-inmemory'
-
-import ApolloClient from 'apollo-client'
-import { API_URL } from '...'
-
-const client = new ApolloClient({
-  link: createHttpLink({
-    uri: API_URL,
-    fetch: fetch,
-  }),
-  cache: new InMemoryCache(),
-})
-// end error test
 
 app.prepare().then(() => {
   const server = new Koa();

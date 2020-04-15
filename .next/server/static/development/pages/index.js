@@ -979,10 +979,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-apollo */ "react-apollo");
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! node-fetch */ "node-fetch");
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var apollo_link_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! apollo-link-http */ "apollo-link-http");
-/* harmony import */ var apollo_link_http__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(apollo_link_http__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! apollo-boost */ "apollo-boost");
+/* harmony import */ var apollo_boost__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(apollo_boost__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! node-fetch */ "node-fetch");
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_9__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -994,12 +994,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ // import fetch from 'node-fetch';
 
 
 
-const link = Object(apollo_link_http__WEBPACK_IMPORTED_MODULE_9__["createHttpLink"])({
-  uri: '/graphql',
-  fetch: node_fetch__WEBPACK_IMPORTED_MODULE_8___default.a
+const client = new apollo_boost__WEBPACK_IMPORTED_MODULE_8___default.a({
+  fetch: node_fetch__WEBPACK_IMPORTED_MODULE_9___default.a
 }); // Get the shop's threekit metafield
 
 const GET_TK_METAFIELD = graphql_tag__WEBPACK_IMPORTED_MODULE_6___default.a`
@@ -1051,7 +1051,7 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     _defineProperty(this, "getShopMetafield", () => {
       var fetchUrl = "/api/shopMeta";
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_8___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_9___default()(fetchUrl, {
         method: method
       }).then(response => response.json()).then(json => {
         return json.data;
@@ -1061,7 +1061,7 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     _defineProperty(this, "updateShopMetafield", (id, val) => {
       var fetchUrl = `/api/insertMeta/${id}/${val}`;
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_8___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_9___default()(fetchUrl, {
         method: method
       }).then(response => response.json()).then(json => {
         return json.data;
@@ -1071,7 +1071,7 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     _defineProperty(this, "makeScript", () => {
       var fetchUrl = `/make/script_tags`;
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_8___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_9___default()(fetchUrl, {
         method: method
       }).then(response => response.json()).then(json => {
         return json.data;
@@ -1088,7 +1088,7 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       }
 
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_8___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_9___default()(fetchUrl, {
         method: method
       }).then(response => response.json()).then(json => {});
     });
@@ -1193,6 +1193,17 @@ module.exports = require("@shopify/app-bridge/actions");
 /***/ (function(module, exports) {
 
 module.exports = require("@shopify/polaris");
+
+/***/ }),
+
+/***/ "apollo-boost":
+/*!*******************************!*\
+  !*** external "apollo-boost" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("apollo-boost");
 
 /***/ }),
 
