@@ -7,8 +7,8 @@ const { verifyRequest } = require("@shopify/koa-shopify-auth");
 const session = require("koa-session");
 const Router = require("koa-router");
 const router = new Router();
-// const fetch = require('node-fetch');
-const fetch = require('cross-fetch');
+const fetch = require('node-fetch');
+// const fetch = require('cross-fetch');
 
 dotenv.config();
 const { default: graphQLProxy } = require("@shopify/koa-shopify-graphql-proxy");
@@ -21,6 +21,21 @@ const handle = app.getRequestHandler();
 
 const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
+// Error test
+import { createHttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+
+import ApolloClient from 'apollo-client'
+import { API_URL } from '...'
+
+const client = new ApolloClient({
+  link: createHttpLink({
+    uri: API_URL,
+    fetch: fetch,
+  }),
+  cache: new InMemoryCache(),
+})
+// end error test
 
 app.prepare().then(() => {
   const server = new Koa();
