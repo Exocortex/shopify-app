@@ -7,11 +7,20 @@ import translations from '@shopify/polaris/locales/en.json';
 import Cookies from 'js-cookie';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import fetch from 'node-fetch';
+
+// const client = new ApolloClient({
+//   fetchOptions: {
+//     credentials: 'include'
+//   },
+// });
+
 
 const client = new ApolloClient({
-  fetchOptions: {
-    credentials: 'include'
-  },
+    fetch: fetch,
+    fetchOptions: {
+      credentials: 'include'
+    }
 });
 
 

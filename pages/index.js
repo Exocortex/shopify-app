@@ -6,14 +6,9 @@ import TokenForm from '../components/TokenForm';
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
-// import fetch from 'node-fetch';
-
-import ApolloClient from 'apollo-boost';
 import fetch from 'node-fetch';
 
-const client = new ApolloClient({
-    fetch: fetch
-});
+
 
 // Get the shop's threekit metafield
 const GET_TK_METAFIELD = gql`
