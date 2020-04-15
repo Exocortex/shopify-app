@@ -1,5 +1,138 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/_app.js"],{
 
+/***/ "./node_modules/@apollo/react-common/lib/react-common.esm.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@apollo/react-common/lib/react-common.esm.js ***!
+  \*******************************************************************/
+/*! exports provided: ApolloConsumer, ApolloProvider, DocumentType, getApolloContext, operationName, parser, resetApolloContext */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApolloConsumer", function() { return ApolloConsumer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApolloProvider", function() { return ApolloProvider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocumentType", function() { return DocumentType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getApolloContext", function() { return getApolloContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "operationName", function() { return operationName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parser", function() { return parser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetApolloContext", function() { return resetApolloContext; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var ts_invariant__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ts-invariant */ "./node_modules/ts-invariant/lib/invariant.esm.js");
+
+
+
+var apolloContext;
+function getApolloContext() {
+    if (!apolloContext) {
+        apolloContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext({});
+    }
+    return apolloContext;
+}
+function resetApolloContext() {
+    apolloContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext({});
+}
+
+var ApolloProvider = function (_a) {
+    var client = _a.client, children = _a.children;
+    var ApolloContext = getApolloContext();
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ApolloContext.Consumer, null, function (context) {
+        if (context === void 0) { context = {}; }
+        if (client && context.client !== client) {
+            context = Object.assign({}, context, { client: client });
+        }
+         false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(context.client, 'ApolloProvider was not passed a client instance. Make ' +
+            'sure you pass in your client via the "client" prop.');
+        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ApolloContext.Provider, { value: context }, children));
+    });
+};
+
+var ApolloConsumer = function (props) {
+    var ApolloContext = getApolloContext();
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ApolloContext.Consumer, null, function (context) {
+         false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(context && context.client, 'Could not find "client" in the context of ApolloConsumer. ' +
+            'Wrap the root component in an <ApolloProvider>.');
+        return props.children(context.client);
+    });
+};
+
+var DocumentType;
+(function (DocumentType) {
+    DocumentType[DocumentType["Query"] = 0] = "Query";
+    DocumentType[DocumentType["Mutation"] = 1] = "Mutation";
+    DocumentType[DocumentType["Subscription"] = 2] = "Subscription";
+})(DocumentType || (DocumentType = {}));
+var cache = new Map();
+function operationName(type) {
+    var name;
+    switch (type) {
+        case DocumentType.Query:
+            name = 'Query';
+            break;
+        case DocumentType.Mutation:
+            name = 'Mutation';
+            break;
+        case DocumentType.Subscription:
+            name = 'Subscription';
+            break;
+    }
+    return name;
+}
+function parser(document) {
+    var cached = cache.get(document);
+    if (cached)
+        return cached;
+    var variables, type, name;
+     false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!!document && !!document.kind, "Argument of " + document + " passed to parser was not a valid GraphQL " +
+        "DocumentNode. You may need to use 'graphql-tag' or another method " +
+        "to convert your operation into a document");
+    var fragments = document.definitions.filter(function (x) { return x.kind === 'FragmentDefinition'; });
+    var queries = document.definitions.filter(function (x) {
+        return x.kind === 'OperationDefinition' && x.operation === 'query';
+    });
+    var mutations = document.definitions.filter(function (x) {
+        return x.kind === 'OperationDefinition' && x.operation === 'mutation';
+    });
+    var subscriptions = document.definitions.filter(function (x) {
+        return x.kind === 'OperationDefinition' && x.operation === 'subscription';
+    });
+     false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!fragments.length ||
+        (queries.length || mutations.length || subscriptions.length), "Passing only a fragment to 'graphql' is not yet supported. " +
+        "You must include a query, subscription or mutation as well");
+     false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(queries.length + mutations.length + subscriptions.length <= 1, "react-apollo only supports a query, subscription, or a mutation per HOC. " +
+        (document + " had " + queries.length + " queries, " + subscriptions.length + " ") +
+        ("subscriptions and " + mutations.length + " mutations. ") +
+        "You can use 'compose' to join multiple operation types to a component");
+    type = queries.length ? DocumentType.Query : DocumentType.Mutation;
+    if (!queries.length && !mutations.length)
+        type = DocumentType.Subscription;
+    var definitions = queries.length
+        ? queries
+        : mutations.length
+            ? mutations
+            : subscriptions;
+     false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(definitions.length === 1, "react-apollo only supports one definition per HOC. " + document + " had " +
+        (definitions.length + " definitions. ") +
+        "You can use 'compose' to join multiple operation types to a component");
+    var definition = definitions[0];
+    variables = definition.variableDefinitions || [];
+    if (definition.name && definition.name.kind === 'Name') {
+        name = definition.name.value;
+    }
+    else {
+        name = 'data';
+    }
+    var payload = { name: name, type: type, variables: variables };
+    cache.set(document, payload);
+    return payload;
+}
+
+
+//# sourceMappingURL=react-common.esm.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@apollo/react-hooks/lib/react-hooks.esm.js":
 /*!*****************************************************************!*\
   !*** ./node_modules/@apollo/react-hooks/lib/react-hooks.esm.js ***!
@@ -15,7 +148,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useMutation", function() { return useMutation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useQuery", function() { return useQuery; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useSubscription", function() { return useSubscription; });
-/* harmony import */ var _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @apollo/react-common */ "./node_modules/@apollo/react-hooks/node_modules/@apollo/react-common/lib/react-common.esm.js");
+/* harmony import */ var _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @apollo/react-common */ "./node_modules/@apollo/react-common/lib/react-common.esm.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApolloConsumer", function() { return _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["ApolloConsumer"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApolloProvider", function() { return _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["ApolloProvider"]; });
@@ -90,7 +223,7 @@ var OperationData = (function () {
 var QueryData = (function (_super) {
     Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__extends"])(QueryData, _super);
     function QueryData(_a) {
-        var options = _a.options, context = _a.context, onNewData = _a.onNewData;
+        var options = _a.options, context = _a.context, forceUpdate = _a.forceUpdate;
         var _this = _super.call(this, options, context) || this;
         _this.previousData = {};
         _this.currentObservable = {};
@@ -99,7 +232,7 @@ var QueryData = (function (_super) {
             _this.cleanup();
             _this.runLazy = true;
             _this.lazyOptions = options;
-            _this.onNewData();
+            _this.forceUpdate();
         };
         _this.getExecuteResult = function () {
             var result = _this.getQueryResult();
@@ -122,7 +255,7 @@ var QueryData = (function (_super) {
                 _this.currentObservable.query.stopPolling();
         };
         _this.obsSubscribeToMore = function (options) { return _this.currentObservable.query.subscribeToMore(options); };
-        _this.onNewData = onNewData;
+        _this.forceUpdate = forceUpdate;
         return _this;
     }
     QueryData.prototype.execute = function () {
@@ -145,8 +278,8 @@ var QueryData = (function (_super) {
                     loading: false,
                     networkStatus: apollo_client__WEBPACK_IMPORTED_MODULE_3__["NetworkStatus"].ready,
                     called: false,
-                    data: undefined,
-                },
+                    data: undefined
+                }
             ]
             : [this.runLazyQuery, this.execute()];
     };
@@ -159,10 +292,15 @@ var QueryData = (function (_super) {
         return currentResult.loading ? obs.result() : false;
     };
     QueryData.prototype.afterExecute = function (_a) {
+        var _this = this;
         var _b = (_a === void 0 ? {} : _a).lazy, lazy = _b === void 0 ? false : _b;
         this.isMounted = true;
         if (!lazy || this.runLazy) {
             this.handleErrorOrCompleted();
+            setTimeout(function () {
+                _this.currentObservable.query &&
+                    _this.currentObservable.query.resetQueryStoreErrors();
+            });
         }
         this.previousOptions = this.getOptions();
         return this.unmount.bind(this);
@@ -183,19 +321,21 @@ var QueryData = (function (_super) {
         }
         return options;
     };
-    QueryData.prototype.ssrInitiated = function () {
-        return this.context && this.context.renderPromises;
-    };
     QueryData.prototype.getExecuteSsrResult = function () {
+        var treeRenderingInitiated = this.context && this.context.renderPromises;
         var ssrDisabled = this.getOptions().ssr === false;
         var fetchDisabled = this.refreshClient().client.disableNetworkFetches;
-        var ssrLoading = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({ loading: true, networkStatus: apollo_client__WEBPACK_IMPORTED_MODULE_3__["NetworkStatus"].loading, called: true, data: undefined, stale: false, client: this.client }, this.observableQueryFields());
-        if (ssrDisabled && (this.ssrInitiated() || fetchDisabled)) {
-            this.previousData.result = ssrLoading;
+        var ssrLoading = {
+            loading: true,
+            networkStatus: apollo_client__WEBPACK_IMPORTED_MODULE_3__["NetworkStatus"].loading,
+            called: true,
+            data: undefined
+        };
+        if (ssrDisabled && (treeRenderingInitiated || fetchDisabled)) {
             return ssrLoading;
         }
         var result;
-        if (this.ssrInitiated()) {
+        if (treeRenderingInitiated) {
             result =
                 this.context.renderPromises.addQueryPromise(this, this.getExecuteResult) || ssrLoading;
         }
@@ -205,7 +345,8 @@ var QueryData = (function (_super) {
         var options = this.getOptions();
         this.verifyDocumentType(options.query, _apollo_react_common__WEBPACK_IMPORTED_MODULE_0__["DocumentType"].Query);
         var displayName = options.displayName || 'Query';
-        if (this.ssrInitiated() &&
+        if (this.context &&
+            this.context.renderPromises &&
             (options.fetchPolicy === 'network-only' ||
                 options.fetchPolicy === 'cache-and-network')) {
             options.fetchPolicy = 'cache-first';
@@ -213,16 +354,15 @@ var QueryData = (function (_super) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, options), { displayName: displayName, context: options.context, metadata: { reactComponent: { displayName: displayName } } });
     };
     QueryData.prototype.initializeObservableQuery = function () {
-        var _a, _b;
-        if (this.ssrInitiated()) {
+        if (this.context && this.context.renderPromises) {
             this.currentObservable.query = this.context.renderPromises.getSSRObservable(this.getOptions());
         }
         if (!this.currentObservable.query) {
             var observableQueryOptions = this.prepareObservableQueryOptions();
             this.previousData.observableQueryOptions = Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, observableQueryOptions), { children: null });
             this.currentObservable.query = this.refreshClient().client.watchQuery(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, observableQueryOptions));
-            if (this.ssrInitiated()) {
-                (_b = (_a = this.context) === null || _a === void 0 ? void 0 : _a.renderPromises) === null || _b === void 0 ? void 0 : _b.registerSSRObservable(this.currentObservable.query, observableQueryOptions);
+            if (this.context && this.context.renderPromises) {
+                this.context.renderPromises.registerSSRObservable(this.currentObservable.query, observableQueryOptions);
             }
         }
     };
@@ -254,7 +394,7 @@ var QueryData = (function (_super) {
                     Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(previousResult.data, data)) {
                     return;
                 }
-                _this.onNewData();
+                _this.forceUpdate();
             },
             error: function (error) {
                 _this.resubscribeToQuery();
@@ -264,9 +404,9 @@ var QueryData = (function (_super) {
                 if ((previousResult && previousResult.loading) ||
                     !Object(_wry_equality__WEBPACK_IMPORTED_MODULE_4__["equal"])(error, _this.previousData.error)) {
                     _this.previousData.error = error;
-                    _this.onNewData();
+                    _this.forceUpdate();
                 }
-            },
+            }
         });
     };
     QueryData.prototype.resubscribeToQuery = function () {
@@ -277,7 +417,7 @@ var QueryData = (function (_super) {
         this.startQuerySubscription();
         Object.assign(this.currentObservable.query, {
             lastError: lastError,
-            lastResult: lastResult,
+            lastResult: lastResult
         });
     };
     QueryData.prototype.getQueryResult = function () {
@@ -305,7 +445,7 @@ var QueryData = (function (_super) {
             else if (error) {
                 Object.assign(result, {
                     data: (this.currentObservable.query.getLastResult() || {})
-                        .data,
+                        .data
                 });
             }
             else {
@@ -317,7 +457,7 @@ var QueryData = (function (_super) {
                     fetchPolicy !== 'cache-only') {
                     Object.assign(result, {
                         loading: true,
-                        networkStatus: apollo_client__WEBPACK_IMPORTED_MODULE_3__["NetworkStatus"].loading,
+                        networkStatus: apollo_client__WEBPACK_IMPORTED_MODULE_3__["NetworkStatus"].loading
                     });
                     result.refetch();
                     return result;
@@ -329,15 +469,13 @@ var QueryData = (function (_super) {
         this.previousData.loading =
             (this.previousData.result && this.previousData.result.loading) || false;
         this.previousData.result = result;
-        this.currentObservable.query &&
-            this.currentObservable.query.resetQueryStoreErrors();
         return result;
     };
     QueryData.prototype.handleErrorOrCompleted = function () {
         var obsQuery = this.currentObservable.query;
-        if (!obsQuery || !this.previousData.result)
+        if (!obsQuery)
             return;
-        var _a = this.previousData.result, data = _a.data, loading = _a.loading, error = _a.error;
+        var _a = obsQuery.getCurrentResult(), data = _a.data, loading = _a.loading, error = _a.error;
         if (!loading) {
             var _b = this.getOptions(), query = _b.query, variables = _b.variables, onCompleted = _b.onCompleted, onError = _b.onError;
             if (this.previousOptions &&
@@ -369,7 +507,7 @@ var QueryData = (function (_super) {
             updateQuery: this.obsUpdateQuery,
             startPolling: this.obsStartPolling,
             stopPolling: this.obsStopPolling,
-            subscribeToMore: this.obsSubscribeToMore,
+            subscribeToMore: this.obsSubscribeToMore
         };
     };
     return QueryData;
@@ -389,45 +527,34 @@ function useBaseQuery(query, options, lazy) {
     var _a = Object(react__WEBPACK_IMPORTED_MODULE_2__["useReducer"])(function (x) { return x + 1; }, 0), tick = _a[0], forceUpdate = _a[1];
     var updatedOptions = options ? Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, options), { query: query }) : { query: query };
     var queryDataRef = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])();
-    var queryData = queryDataRef.current ||
-        new QueryData({
+    if (!queryDataRef.current) {
+        queryDataRef.current = new QueryData({
             options: updatedOptions,
             context: context,
-            onNewData: function () {
-                if (!queryData.ssrInitiated()) {
-                    Promise.resolve().then(forceUpdate);
-                }
-                else {
-                    forceUpdate();
-                }
-            },
+            forceUpdate: forceUpdate
         });
+    }
+    var queryData = queryDataRef.current;
     queryData.setOptions(updatedOptions);
     queryData.context = context;
-    if (queryData.ssrInitiated() && !queryDataRef.current) {
-        queryDataRef.current = queryData;
-    }
     var memo = {
         options: Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])(Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__assign"])({}, updatedOptions), { onError: undefined, onCompleted: undefined }),
         context: context,
-        tick: tick,
+        tick: tick
     };
     var result = useDeepMemo(function () { return (lazy ? queryData.executeLazy() : queryData.execute()); }, memo);
     var queryResult = lazy
         ? result[1]
         : result;
-    Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
-        if (!queryDataRef.current) {
-            queryDataRef.current = queryData;
-        }
-        return function () { return queryData.cleanup(); };
-    }, []);
     Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () { return queryData.afterExecute({ lazy: lazy }); }, [
         queryResult.loading,
         queryResult.networkStatus,
         queryResult.error,
-        queryResult.data,
+        queryResult.data
     ]);
+    Object(react__WEBPACK_IMPORTED_MODULE_2__["useEffect"])(function () {
+        return function () { return queryData.cleanup(); };
+    }, []);
     return result;
 }
 
@@ -774,139 +901,6 @@ var RenderPromises = (function () {
 
 
 //# sourceMappingURL=react-hooks.esm.js.map
-
-
-/***/ }),
-
-/***/ "./node_modules/@apollo/react-hooks/node_modules/@apollo/react-common/lib/react-common.esm.js":
-/*!****************************************************************************************************!*\
-  !*** ./node_modules/@apollo/react-hooks/node_modules/@apollo/react-common/lib/react-common.esm.js ***!
-  \****************************************************************************************************/
-/*! exports provided: ApolloConsumer, ApolloProvider, DocumentType, getApolloContext, operationName, parser, resetApolloContext */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApolloConsumer", function() { return ApolloConsumer; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApolloProvider", function() { return ApolloProvider; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocumentType", function() { return DocumentType; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getApolloContext", function() { return getApolloContext; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "operationName", function() { return operationName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parser", function() { return parser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resetApolloContext", function() { return resetApolloContext; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var ts_invariant__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ts-invariant */ "./node_modules/ts-invariant/lib/invariant.esm.js");
-
-
-
-var apolloContext;
-function getApolloContext() {
-    if (!apolloContext) {
-        apolloContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext({});
-    }
-    return apolloContext;
-}
-function resetApolloContext() {
-    apolloContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext({});
-}
-
-var ApolloProvider = function (_a) {
-    var client = _a.client, children = _a.children;
-    var ApolloContext = getApolloContext();
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ApolloContext.Consumer, null, function (context) {
-        if (context === void 0) { context = {}; }
-        if (client && context.client !== client) {
-            context = Object.assign({}, context, { client: client });
-        }
-         false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(context.client, 'ApolloProvider was not passed a client instance. Make ' +
-            'sure you pass in your client via the "client" prop.');
-        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ApolloContext.Provider, { value: context }, children));
-    });
-};
-
-var ApolloConsumer = function (props) {
-    var ApolloContext = getApolloContext();
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(ApolloContext.Consumer, null, function (context) {
-         false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(context && context.client, 'Could not find "client" in the context of ApolloConsumer. ' +
-            'Wrap the root component in an <ApolloProvider>.');
-        return props.children(context.client);
-    });
-};
-
-var DocumentType;
-(function (DocumentType) {
-    DocumentType[DocumentType["Query"] = 0] = "Query";
-    DocumentType[DocumentType["Mutation"] = 1] = "Mutation";
-    DocumentType[DocumentType["Subscription"] = 2] = "Subscription";
-})(DocumentType || (DocumentType = {}));
-var cache = new Map();
-function operationName(type) {
-    var name;
-    switch (type) {
-        case DocumentType.Query:
-            name = 'Query';
-            break;
-        case DocumentType.Mutation:
-            name = 'Mutation';
-            break;
-        case DocumentType.Subscription:
-            name = 'Subscription';
-            break;
-    }
-    return name;
-}
-function parser(document) {
-    var cached = cache.get(document);
-    if (cached)
-        return cached;
-    var variables, type, name;
-     false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!!document && !!document.kind, "Argument of " + document + " passed to parser was not a valid GraphQL " +
-        "DocumentNode. You may need to use 'graphql-tag' or another method " +
-        "to convert your operation into a document");
-    var fragments = document.definitions.filter(function (x) { return x.kind === 'FragmentDefinition'; });
-    var queries = document.definitions.filter(function (x) {
-        return x.kind === 'OperationDefinition' && x.operation === 'query';
-    });
-    var mutations = document.definitions.filter(function (x) {
-        return x.kind === 'OperationDefinition' && x.operation === 'mutation';
-    });
-    var subscriptions = document.definitions.filter(function (x) {
-        return x.kind === 'OperationDefinition' && x.operation === 'subscription';
-    });
-     false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(!fragments.length ||
-        (queries.length || mutations.length || subscriptions.length), "Passing only a fragment to 'graphql' is not yet supported. " +
-        "You must include a query, subscription or mutation as well");
-     false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(queries.length + mutations.length + subscriptions.length <= 1, "react-apollo only supports a query, subscription, or a mutation per HOC. " +
-        (document + " had " + queries.length + " queries, " + subscriptions.length + " ") +
-        ("subscriptions and " + mutations.length + " mutations. ") +
-        "You can use 'compose' to join multiple operation types to a component");
-    type = queries.length ? DocumentType.Query : DocumentType.Mutation;
-    if (!queries.length && !mutations.length)
-        type = DocumentType.Subscription;
-    var definitions = queries.length
-        ? queries
-        : mutations.length
-            ? mutations
-            : subscriptions;
-     false ? undefined : Object(ts_invariant__WEBPACK_IMPORTED_MODULE_1__["invariant"])(definitions.length === 1, "react-apollo only supports one definition per HOC. " + document + " had " +
-        (definitions.length + " definitions. ") +
-        "You can use 'compose' to join multiple operation types to a component");
-    var definition = definitions[0];
-    variables = definition.variableDefinitions || [];
-    if (definition.name && definition.name.kind === 'Name') {
-        name = definition.name.value;
-    }
-    else {
-        name = 'data';
-    }
-    var payload = { name: name, type: type, variables: variables };
-    cache.set(document, payload);
-    return payload;
-}
-
-
-//# sourceMappingURL=react-common.esm.js.map
 
 
 /***/ }),

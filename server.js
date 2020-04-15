@@ -7,7 +7,8 @@ const { verifyRequest } = require("@shopify/koa-shopify-auth");
 const session = require("koa-session");
 const Router = require("koa-router");
 const router = new Router();
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
+const fetch = require('cross-fetch');
 
 dotenv.config();
 const { default: graphQLProxy } = require("@shopify/koa-shopify-graphql-proxy");
@@ -19,6 +20,7 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
+
 
 app.prepare().then(() => {
   const server = new Koa();
