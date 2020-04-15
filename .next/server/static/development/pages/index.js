@@ -898,7 +898,7 @@ function TokenForm(props) {
     node_fetch__WEBPACK_IMPORTED_MODULE_5___default()(fetchUrl, {
       method: method
     }).then(response => response.json()).then(json => {
-      setTkToken(json.data.metafield.value);
+      setTkToken(json.data.metafield.value.replace(`'`, ""));
       setIsSaved(true);
     });
   };
@@ -909,7 +909,8 @@ function TokenForm(props) {
     node_fetch__WEBPACK_IMPORTED_MODULE_5___default()(fetchUrl, {
       method: method
     }).then(response => response.json()).then(json => {
-      setTkToken(json.data.metafield.value);
+      setTkToken(json.data.metafield.value.replace(`'`, ""));
+      console.log(json.data.metafield.value);
       setIsSaved(true);
     });
   };
@@ -1108,7 +1109,6 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   }
 
   render() {
-    // This retrieves any locally stored items
     const emptyState = !store_js__WEBPACK_IMPORTED_MODULE_3___default.a.get("ids");
     return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Page"], null, __jsx(_shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_2__["TitleBar"], {
       primaryAction: {

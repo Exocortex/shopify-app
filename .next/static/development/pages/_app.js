@@ -73958,7 +73958,7 @@ var MyApp = /*#__PURE__*/function (_App) {
           Component = _this$props.Component,
           pageProps = _this$props.pageProps;
       var config = {
-        apiKey: "843051a71f626132d541934001fc72dc",
+        apiKey: "8f44a1c54196c604abd1c52796d0b7d2",
         shopOrigin: js_cookie__WEBPACK_IMPORTED_MODULE_12___default.a.get("shopOrigin"),
         forceRedirect: true
       };

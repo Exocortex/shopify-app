@@ -856,7 +856,7 @@ function TokenForm(props) {
     }).then(function (response) {
       return response.json();
     }).then(function (json) {
-      setTkToken(json.data.metafield.value);
+      setTkToken(json.data.metafield.value.replace("'", ""));
       setIsSaved(true);
     });
   };
@@ -869,7 +869,8 @@ function TokenForm(props) {
     }).then(function (response) {
       return response.json();
     }).then(function (json) {
-      setTkToken(json.data.metafield.value);
+      setTkToken(json.data.metafield.value.replace("'", ""));
+      console.log(json.data.metafield.value);
       setIsSaved(true);
     });
   };
@@ -75172,7 +75173,6 @@ var Index = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      // This retrieves any locally stored items
       var emptyState = !store_js__WEBPACK_IMPORTED_MODULE_11___default.a.get("ids");
       return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["Page"], null, __jsx(_shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_10__["TitleBar"], {
         primaryAction: {

@@ -17,7 +17,7 @@ function TokenForm(props) {
     fetch(fetchUrl, { method: method })
       .then(response => response.json())
       .then(json => {
-        setTkToken(json.data.metafield.value);
+        setTkToken(json.data.metafield.value.replace(`'`, ""));
         setIsSaved(true);
       });
   };
@@ -28,7 +28,8 @@ function TokenForm(props) {
     fetch(fetchUrl, { method: method })
       .then(response => response.json())
       .then(json => {
-        setTkToken(json.data.metafield.value);
+        setTkToken(json.data.metafield.value.replace(`'`, ""));
+        console.log(json.data.metafield.value)
         setIsSaved(true);
       });
   };

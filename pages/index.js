@@ -118,7 +118,6 @@ class Index extends React.Component {
   }
 
   render() {
-    // This retrieves any locally stored items
     const emptyState = !store.get("ids");
 
     return (
