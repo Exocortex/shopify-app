@@ -75156,7 +75156,11 @@ var Index = /*#__PURE__*/function (_React$Component) {
   Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Index, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log(this.state);
+      // console.log(this.state)
+      store_js__WEBPACK_IMPORTED_MODULE_11___default.a.remove('ids');
+      store_js__WEBPACK_IMPORTED_MODULE_11___default.a.each(function (value, key) {
+        console.log(key, '==', value);
+      });
     }
   }, {
     key: "componentWillUnmount",

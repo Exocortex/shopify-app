@@ -1096,7 +1096,11 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
   }
 
   componentDidMount() {
-    console.log(this.state);
+    // console.log(this.state)
+    store_js__WEBPACK_IMPORTED_MODULE_3___default.a.remove('ids');
+    store_js__WEBPACK_IMPORTED_MODULE_3___default.a.each(function (value, key) {
+      console.log(key, '==', value);
+    });
   }
 
   componentWillUnmount() {

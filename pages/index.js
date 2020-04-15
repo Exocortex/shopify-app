@@ -106,7 +106,11 @@ class Index extends React.Component {
   
 
   componentDidMount() {
-    console.log(this.state)
+    // console.log(this.state)
+    store.remove('ids')
+    store.each(function(value, key) {
+      console.log(key, '==', value)
+    })
   }
 
   componentWillUnmount(){
