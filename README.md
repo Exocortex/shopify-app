@@ -18,7 +18,7 @@ Installation Instructions:
 {% endif %}
 
 
-# threekit-pdp.liquid
+# pdp-threekit.liquid
 {% assign threekit = product.metafields.threekit %}
 
 {% assign asset = 'assetid' %}
