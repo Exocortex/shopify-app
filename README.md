@@ -1,4 +1,4 @@
-# shopify-tutorial
+# Threekit - Connector
 
 Installation Instructions:
 # theme.liquid
