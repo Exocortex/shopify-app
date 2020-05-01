@@ -93,6 +93,204 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./components/AllProductResource.js":
+/*!******************************************!*\
+  !*** ./components/AllProductResource.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-apollo */ "react-apollo");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @shopify/polaris */ "@shopify/polaris");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! store-js */ "store-js");
+/* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(store_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _ThreekitForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ThreekitForm */ "./components/ThreekitForm.js");
+/* harmony import */ var _shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @shopify/app-bridge-react */ "@shopify/app-bridge-react");
+/* harmony import */ var _shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Loading */ "./components/Loading.js");
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+const GET_ALL_PRODCUTS = graphql_tag__WEBPACK_IMPORTED_MODULE_1___default.a`
+query {
+  products(first: 50) {
+    edges {
+      cursor
+      node {
+        id
+        title
+        handle
+        descriptionHtml
+        images(first: 1) {
+          edges {
+            node {
+              originalSrc
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+const GET_TK_ASSET_ID = graphql_tag__WEBPACK_IMPORTED_MODULE_1___default.a`
+  query($id: ID!) {
+    product(id: $id) {
+      metafield(namespace: "threekit", key: "assetid") {
+        value
+        id
+      }
+    }
+  }
+`;
+
+class AllProductResource extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+  constructor(...args) {
+    super(...args);
+
+    _defineProperty(this, "state", {
+      ids: [],
+      tkId: {},
+      field: "",
+      active: false,
+      checked: false,
+      tkMetaFieldId: ""
+    });
+
+    _defineProperty(this, "_queryMe", data => {
+      if (data.shop.metafield == null) {
+        return null;
+      } else {
+        const str = JSON.parse(data.shop.metafield.value);
+        let arr;
+        arr = str.ids.split(",");
+        this.setState({
+          ids: arr.map(id => "gid://shopify/Product/" + id)
+        });
+      }
+    });
+
+    _defineProperty(this, "_setTkID", data => {
+      this.setState({
+        tkId: data
+      });
+    });
+
+    _defineProperty(this, "_setTkMetafieldId", data => {
+      this.setState({
+        tkMetaFieldId: JSON.stringify(data)
+      });
+    });
+
+    _defineProperty(this, "getTkAsset", () => {
+      return __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Query"], {
+        query: GET_TK_ASSET_ID,
+        onCompleted: data => this._setTkID(data)
+      }, () => {
+        return null;
+      });
+    });
+
+    _defineProperty(this, "handleTKChange", e => {
+      this.setState({
+        field: e
+      });
+    });
+
+    _defineProperty(this, "handleCheck", () => {
+      !this.state.checked ? this.setState({
+        checked: true
+      }) : this.setState({
+        checked: false
+      });
+    });
+
+    _defineProperty(this, "handleToggle", () => !this.state.active ? this.setState({
+      active: true
+    }) : this.setState({
+      active: false
+    }));
+  }
+
+  render() {
+    return __jsx("div", {
+      style: {
+        margin: 'auto',
+        width: '95%'
+      }
+    }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Frame"], null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Query"], {
+      query: GET_ALL_PRODCUTS
+    }, ({
+      data,
+      loading,
+      error
+    }) => {
+      if (loading) return __jsx(_components_Loading__WEBPACK_IMPORTED_MODULE_7__["LoadingScreen"], null);
+      if (error) return __jsx("div", null, error.message);
+      console.log(data);
+      return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Card"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["ResourceList"], {
+        showHeader: true,
+        resourceName: {
+          singular: "Product",
+          plural: "Products"
+        },
+        items: data.products.edges,
+        renderItem: item => {
+          const media = __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Thumbnail"], {
+            source: item.node.images.edges[0] ? item.node.images.edges[0].node.originalSrc : "",
+            alt: item.node.images.edges[0] ? item.node.images.edges[0].node.altText : ""
+          }); //   const price = item.variants.edges[0].node.price;
+
+
+          return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["ResourceList"].Item, {
+            id: item.node.id,
+            media: media,
+            accessibilityLabel: `View details for ${item.node.title}`
+          }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Stack"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Stack"].Item, {
+            fill: true
+          }, __jsx(_ThreekitForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
+            query: GET_TK_ASSET_ID,
+            title: item.node.title,
+            id: {
+              id: item.node.id
+            },
+            field: this.state.field,
+            handleTKChange: this.handleTKChange,
+            handleCheckChange: this.handleCheck,
+            checked: this.state.checked,
+            tkMetafieldId: this.state.tkMetaFieldId
+          }))));
+        }
+      }));
+    })));
+  }
+
+}
+
+_defineProperty(AllProductResource, "contextType", _shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_6__["Context"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (AllProductResource);
+
+/***/ }),
+
 /***/ "./components/Loading.js":
 /*!*******************************!*\
   !*** ./components/Loading.js ***!
@@ -210,6 +408,30 @@ const GET_TK_PRODUCT_IDS = graphql_tag__WEBPACK_IMPORTED_MODULE_1___default.a`
     }
   }
 `;
+const GET_ALL_PRODCUTS = graphql_tag__WEBPACK_IMPORTED_MODULE_1___default.a`
+query {
+  products(first: 50) {
+    edges {
+      cursor
+      node {
+        id
+        title
+        handle
+        descriptionHtml
+        images(first: 1) {
+          edges {
+            node {
+              originalSrc
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+`;
 const GET_TK_ASSET_ID = graphql_tag__WEBPACK_IMPORTED_MODULE_1___default.a`
   query($id: ID!) {
     product(id: $id) {
@@ -300,19 +522,16 @@ class ResourceListWithProducts extends react__WEBPACK_IMPORTED_MODULE_0___defaul
   }
 
   render() {
-    const app = this.context;
+    const app = this.context; // const redirectToProduct = () => {
+    //   const redirect = Redirect.create(app);
+    //   redirect.dispatch(Redirect.Action.APP, "/edit-products");
+    // };
 
-    const redirectToProduct = () => {
-      const redirect = _shopify_app_bridge_actions__WEBPACK_IMPORTED_MODULE_6__["Redirect"].create(app);
-      redirect.dispatch(_shopify_app_bridge_actions__WEBPACK_IMPORTED_MODULE_6__["Redirect"].Action.APP, "/edit-products");
-    };
-
-    return __jsx("div", null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Frame"], null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Query"], {
-      query: GET_TK_PRODUCT_IDS,
-      onCompleted: data => this._queryMe(data)
-    }, () => {
-      return __jsx("div", null, "");
-    }), " ", __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Query"], {
+    return __jsx("div", {
+      style: {
+        margin: 'auto'
+      }
+    }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Frame"], null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Query"], {
       query: GET_META_ID,
       onCompleted: data => this._setTkMetafieldId(data)
     }, () => {
@@ -721,14 +940,7 @@ function ThreekitForm(props) {
         id: data.product.id,
         ariaControls: data.product.id,
         placeholder: !data.product.metafield ? "No Threekit ID" : data.product.metafield.value,
-        connectedRight: __jsx("div", null, __jsx(_components_SnippetGen__WEBPACK_IMPORTED_MODULE_5__["default"], {
-          handleChange: handleModalChange,
-          active: modalActive,
-          title: `${props.title}`,
-          assetid: !data.product.metafield ? "No Threekit ID" : data.product.metafield.value,
-          ar: "true",
-          env: "preview"
-        }), __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Button"], {
+        connectedRight: __jsx("div", null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Button"], {
           primary: true,
           onClick: () => {
             let productVariableInput;
@@ -762,9 +974,7 @@ function ThreekitForm(props) {
               }
             });
           }
-        }, "Save"), __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Button"], {
-          onClick: handleModalChange
-        }, "Embed this product"))
+        }, "Save"))
       }));
     })));
   }), __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Stack"].Item, null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
@@ -925,7 +1135,11 @@ function TokenForm(props) {
     }
   `;
   const handleChange = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(newValue => setTkToken(newValue), []);
-  return __jsx("div", null, !isSaved ? __jsx("div", null) : __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Frame"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Toast"], {
+  return __jsx("div", {
+    style: {
+      margin: "30px"
+    }
+  }, !isSaved ? __jsx("div", null) : __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Frame"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Toast"], {
     content: "Saved",
     onDismiss: () => setIsSaved(false)
   })), __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
@@ -939,16 +1153,22 @@ function TokenForm(props) {
   }) => {
     if (loading) return __jsx(_components_Loading__WEBPACK_IMPORTED_MODULE_4__["LoadingText"], null);
     if (error) return `Error! ${error}`;
-    return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["TextField"], {
+
+    const submitForm = () => {
+      !data.shop.metafield ? makeShopMetafield(tkToken) : updateShopMetafield(data.shop.metafield.id.split("Metafield/")[1], tkToken);
+    };
+
+    return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Form"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["TextField"], {
       label: "Threekit Token",
       value: tkToken,
+      minLength: 5,
       onChange: handleChange,
-      placeholder: !data.shop.metafield ? "No Threekit Token" : data.shop.metafield.value,
+      placeholder: !data.shop.metafield ? "No Threekit Token" : JSON.stringify(data.shop.metafield.value),
       connectedRight: __jsx("div", null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_3__["Button"], {
         primary: true,
-        onClick: () => !data.shop.metafield ? makeShopMetafield(tkToken) : updateShopMetafield(data.shop.metafield.id.split("Metafield/")[1], tkToken)
+        onClick: submitForm
       }, "Save"))
-    });
+    }));
   }));
 }
 
@@ -974,13 +1194,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! store-js */ "store-js");
 /* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(store_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_ResourceList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/ResourceList */ "./components/ResourceList.js");
-/* harmony import */ var _components_TokenForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/TokenForm */ "./components/TokenForm.js");
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-apollo */ "react-apollo");
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! node-fetch */ "node-fetch");
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _components_AllProductResource__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/AllProductResource */ "./components/AllProductResource.js");
+/* harmony import */ var _components_TokenForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/TokenForm */ "./components/TokenForm.js");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-apollo */ "react-apollo");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! node-fetch */ "node-fetch");
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_9__);
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
@@ -993,17 +1214,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
  // Get the shop's threekit metafield
 
-const GET_TK_METAFIELD = graphql_tag__WEBPACK_IMPORTED_MODULE_6___default.a`
-query {
-  shop{
-    metafield(namespace: "threekit", key: "token") {
-      id,
-      value
+const GET_TK_METAFIELD = graphql_tag__WEBPACK_IMPORTED_MODULE_7___default.a`
+  query {
+    shop {
+      metafield(namespace: "threekit", key: "token") {
+        id
+        value
+      }
     }
   }
-}
 `;
 
 class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
@@ -1015,7 +1237,7 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       hasSrc: false,
       shop: "",
       tkMetaId: {},
-      metaID: ''
+      metaID: ""
     });
 
     _defineProperty(this, "_queryMe", data => {
@@ -1024,27 +1246,27 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       } else {
         this.setState({
           tkMetaId: data,
-          metaID: data.shop.metafield.id.split('Metafield/')[1]
+          metaID: data.shop.metafield.id.split("Metafield/")[1]
         });
       }
     });
 
     _defineProperty(this, "_checkIfTK", () => {
       if (this.state.tkMetaId.shop.metafield == null) {
-        console.log('no TK id');
+        console.log("no TK id");
       } else {
         console.log("Yes this is TK");
       }
     });
 
     _defineProperty(this, "_formatProductID", arr => {
-      arr.map(x => x.split('Product/')[1]);
+      arr.map(x => x.split("Product/")[1]);
     });
 
     _defineProperty(this, "getShopMetafield", () => {
       var fetchUrl = "/api/shopMeta";
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_8___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_9___default()(fetchUrl, {
         method: method
       }).then(response => response.json()).then(json => {
         return json.data;
@@ -1054,7 +1276,7 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     _defineProperty(this, "updateShopMetafield", (id, val) => {
       var fetchUrl = `/api/insertMeta/${id}/${val}`;
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_8___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_9___default()(fetchUrl, {
         method: method
       }).then(response => response.json()).then(json => {
         return json.data;
@@ -1064,7 +1286,7 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     _defineProperty(this, "makeScript", () => {
       var fetchUrl = `/make/script_tags`;
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_8___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_9___default()(fetchUrl, {
         method: method
       }).then(response => response.json()).then(json => {
         return json.data;
@@ -1074,20 +1296,21 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
     _defineProperty(this, "makeShopMetafield", val => {
       var fetchUrl;
 
-      if (val == 'undefined') {
+      if (val == "undefined") {
         fetchUrl = "/api/makeMeta/";
       } else {
         fetchUrl = "/api/makeMeta/" + val;
       }
 
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_8___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_9___default()(fetchUrl, {
         method: method
       }).then(response => response.json()).then(json => {});
     });
 
     _defineProperty(this, "handleSelection", resources => {
       const idsFromResources = resources.selection.map(product => product.id);
+      console.log(resources.selection.map(product => product.id));
       this.setState({
         open: false
       });
@@ -1097,21 +1320,22 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
 
   componentDidMount() {
     // console.log(this.state)
-    store_js__WEBPACK_IMPORTED_MODULE_3___default.a.remove('ids');
+    store_js__WEBPACK_IMPORTED_MODULE_3___default.a.remove("ids");
+    console.log(store_js__WEBPACK_IMPORTED_MODULE_3___default.a.get("ids"));
     store_js__WEBPACK_IMPORTED_MODULE_3___default.a.each(function (value, key) {
-      console.log(key, '==', value);
+      console.log(key, "==", value);
     });
   }
 
   componentWillUnmount() {
-    store_js__WEBPACK_IMPORTED_MODULE_3___default.a.remove('ids');
+    store_js__WEBPACK_IMPORTED_MODULE_3___default.a.remove("ids");
   }
 
   render() {
     const emptyState = !store_js__WEBPACK_IMPORTED_MODULE_3___default.a.get("ids");
     return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Page"], null, __jsx(_shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_2__["TitleBar"], {
       primaryAction: {
-        content: "Select products",
+        content: "Narrow Product List",
         onAction: () => this.setState({
           open: true
         })
@@ -1124,16 +1348,16 @@ class Index extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
       onCancel: () => this.setState({
         open: false
       })
-    }), __jsx("div", null, __jsx(_components_TokenForm__WEBPACK_IMPORTED_MODULE_5__["default"], null)), emptyState ? __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["EmptyState"], {
-      heading: "Associate a Shopify product with a Threekit item.",
-      action: {
-        content: "Select products",
-        onAction: () => this.setState({
-          open: true
-        })
-      },
-      image: "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
-    }, __jsx("p", null, "Select products to associate it with a Threekit item."))) : __jsx("div", null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_7__["Query"], {
+    }), __jsx("div", null, __jsx("div", {
+      style: {
+        marginBottom: "30px"
+      }
+    }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Card"], {
+      title: "Welcome to Threekit's Shopify Connector.",
+      sectioned: true
+    }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["TextContainer"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["TextStyle"], {
+      variation: "subdued"
+    }, "All of your Shopify products are listed below unless you have selected otherwise. To manage individual or several products, please narrow your product list.", " "))))), emptyState ? __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_1__["Layout"], null, __jsx(_components_AllProductResource__WEBPACK_IMPORTED_MODULE_5__["default"], null)) : __jsx("div", null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_8__["Query"], {
       query: GET_TK_METAFIELD,
       onCompleted: data => this._queryMe(data)
     }, () => {

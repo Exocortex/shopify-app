@@ -242,7 +242,7 @@ function ThreekitForm(props) {
                                 }
                                 connectedRight={
                                   <div>
-                                    <SnippetGen
+                                    {/* <SnippetGen
                                       handleChange={handleModalChange}
                                       active={modalActive}
                                       title={`${props.title}`}
@@ -253,7 +253,7 @@ function ThreekitForm(props) {
                                       }
                                       ar={"true"}
                                       env={"preview"}
-                                    />
+                                    /> */}
                                     <Button
                                       primary
                                       onClick={() => {
@@ -295,9 +295,9 @@ function ThreekitForm(props) {
                                     >
                                       Save
                                     </Button>
-                                    <Button onClick={handleModalChange}>
+                                    {/* <Button onClick={handleModalChange}>
                                       Embed this product
-                                    </Button>
+                                    </Button> */}
                                   </div>
                                 }
                               ></TextField>

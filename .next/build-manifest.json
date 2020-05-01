@@ -29,6 +29,10 @@
     "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
+    ],
+    "/token": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }

@@ -1,26 +1,35 @@
-import { Layout, Page, TextStyle, EmptyState, Button } from "@shopify/polaris";
+import {
+  Layout,
+  Page,
+  Card,
+  TextStyle,
+  EmptyState,
+  Button,
+  Heading,
+  Subheading,
+  TextContainer
+} from "@shopify/polaris";
 import { ResourcePicker, TitleBar } from "@shopify/app-bridge-react";
 import store from "store-js";
 import ResourceListWithProducts from "../components/ResourceList";
-import TokenForm from '../components/TokenForm';
+import AllProductResource from "../components/AllProductResource";
+import TokenForm from "../components/TokenForm";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
-import fetch from 'node-fetch';
-
-
+import fetch from "node-fetch";
 
 // Get the shop's threekit metafield
 const GET_TK_METAFIELD = gql`
-query {
-  shop{
-    metafield(namespace: "threekit", key: "token") {
-      id,
-      value
+  query {
+    shop {
+      metafield(namespace: "threekit", key: "token") {
+        id
+        value
+      }
     }
   }
-}
-`
+`;
 
 class Index extends React.Component {
   state = {
@@ -28,54 +37,50 @@ class Index extends React.Component {
     hasSrc: false,
     shop: "",
     tkMetaId: {},
-    metaID: '',
+    metaID: "",
   };
 
-  _queryMe = data => {
-    if (data.shop.metafield == null){
+  _queryMe = (data) => {
+    if (data.shop.metafield == null) {
       return null;
     } else {
       this.setState({
         tkMetaId: data,
-        metaID: data.shop.metafield.id.split('Metafield/')[1]
-      })
+        metaID: data.shop.metafield.id.split("Metafield/")[1],
+      });
     }
-
-  }
-
+  };
 
   _checkIfTK = () => {
-    if(this.state.tkMetaId.shop.metafield == null){
-      console.log('no TK id')
+    if (this.state.tkMetaId.shop.metafield == null) {
+      console.log("no TK id");
     } else {
-      console.log("Yes this is TK")
+      console.log("Yes this is TK");
     }
-  }
+  };
 
-  _formatProductID = arr => {
-    arr.map(x => x.split('Product/')[1]);
-  }
+  _formatProductID = (arr) => {
+    arr.map((x) => x.split("Product/")[1]);
+  };
 
   // For testing
   getShopMetafield = () => {
     var fetchUrl = "/api/shopMeta";
     var method = "GET";
     fetch(fetchUrl, { method: method })
-      .then(response => response.json())
-      .then(json => {
-        return json.data
+      .then((response) => response.json())
+      .then((json) => {
+        return json.data;
       });
   };
-
-
 
   updateShopMetafield = (id, val) => {
     var fetchUrl = `/api/insertMeta/${id}/${val}`;
     var method = "GET";
     fetch(fetchUrl, { method: method })
-      .then(response => response.json())
-      .then(json => {
-        return json.data
+      .then((response) => response.json())
+      .then((json) => {
+        return json.data;
       });
   };
 
@@ -83,38 +88,36 @@ class Index extends React.Component {
     var fetchUrl = `/make/script_tags`;
     var method = "GET";
     fetch(fetchUrl, { method: method })
-      .then(response => response.json())
-      .then(json => {
-        return json.data
+      .then((response) => response.json())
+      .then((json) => {
+        return json.data;
       });
-  }
+  };
 
   makeShopMetafield = (val) => {
     var fetchUrl;
-    if (val == 'undefined'){
+    if (val == "undefined") {
       fetchUrl = "/api/makeMeta/";
-    } else{
+    } else {
       fetchUrl = "/api/makeMeta/" + val;
     }
     var method = "GET";
     fetch(fetchUrl, { method: method })
-      .then(response => response.json())
-      .then(json => {
-
-      });
+      .then((response) => response.json())
+      .then((json) => {});
   };
-  
 
   componentDidMount() {
     // console.log(this.state)
-    store.remove('ids')
-    store.each(function(value, key) {
-      console.log(key, '==', value)
-    })
+    store.remove("ids");
+    console.log(store.get("ids"));
+    store.each(function (value, key) {
+      console.log(key, "==", value);
+    });
   }
 
-  componentWillUnmount(){
-    store.remove('ids')
+  componentWillUnmount() {
+    store.remove("ids");
   }
 
   render() {
@@ -124,59 +127,59 @@ class Index extends React.Component {
       <Page>
         <TitleBar
           primaryAction={{
-            content: "Select products",
-            onAction: () => this.setState({ open: true })
+            content: "Narrow Product List",
+            onAction: () => this.setState({ open: true }),
           }}
         />
         <ResourcePicker
           resourceType="Product"
           showVariants={false}
           open={this.state.open}
-          onSelection={resources => this.handleSelection(resources)}
+          onSelection={(resources) => this.handleSelection(resources)}
           onCancel={() => this.setState({ open: false })}
         />
-        <div >
+        <div>
           
-          <TokenForm />
+          <div style={{marginBottom: "30px"}}>
+          <Card title="Welcome to Threekit's Shopify Connector." sectioned >
+          <TextContainer>
+            {/* <Heading></Heading> */}
+          <TextStyle variation="subdued">
+            All of your Shopify products are listed below unless you have selected otherwise. To
+            manage individual or several products, please narrow your product list.{" "}
+          </TextStyle>
+          </TextContainer>
+          </Card>
+          </div>
+   
+       
 
-  
-
+          {/* <TokenForm /> */}
         </div>
         {emptyState ? (
           <Layout>
-            <EmptyState
-              heading="Associate a Shopify product with a Threekit item."
-              action={{
-                content: "Select products",
-                onAction: () => this.setState({ open: true })
-              }}
-              image={
-                "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
-              }
-            >
-              <p>Select products to associate it with a Threekit item.</p>
-            </EmptyState>
+            <AllProductResource />
           </Layout>
         ) : (
           <div>
-            <Query query={GET_TK_METAFIELD} onCompleted={data => this._queryMe(data)}>
+            <Query
+              query={GET_TK_METAFIELD}
+              onCompleted={(data) => this._queryMe(data)}
+            >
               {() => {
-                return (
-                  <div>
-                    {""}
-                  </div>
-                );
+                return <div>{""}</div>;
               }}
             </Query>
-          <ResourceListWithProducts />
-
+            <ResourceListWithProducts />
           </div>
         )}
       </Page>
     );
   }
-  handleSelection = resources => {
-    const idsFromResources = resources.selection.map(product => product.id);
+  handleSelection = (resources) => {
+    const idsFromResources = resources.selection.map((product) => product.id);
+    console.log(resources.selection.map((product) => product.id));
+
     this.setState({ open: false });
     store.set("ids", idsFromResources);
   };

@@ -7,7 +7,7 @@ const { verifyRequest } = require("@shopify/koa-shopify-auth");
 const session = require("koa-session");
 const Router = require("koa-router");
 const router = new Router();
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 dotenv.config();
 const { default: graphQLProxy } = require("@shopify/koa-shopify-graphql-proxy");
@@ -20,13 +20,10 @@ const handle = app.getRequestHandler();
 
 const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
-
 app.prepare().then(() => {
   const server = new Koa();
   server.use(session({ secure: true, sameSite: "none" }, server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
-
-  
 
   server.use(
     createShopifyAuth({
@@ -39,17 +36,43 @@ app.prepare().then(() => {
         ctx.cookies.set("shopOrigin", shop, {
           httpOnly: false,
           secure: true,
-          sameSite: "none"
+          sameSite: "none",
         });
         ctx.cookies.set("accessToken", accessToken);
         ctx.redirect("/");
-      }
+      },
     })
   );
-  // Test backend routes
+
+  function makeResponse(ctx) {
+    return {
+      status: ctx.status,
+      receivedAt: new Date(),
+      result: "Webhook successful",
+      body: ctx.request.body,
+    };
+  }
+
+  // GDPR endpoints
+  router.post("/customers/redact", (ctx) => {
+    ctx.status = 200;
+    ctx.body = makeResponse(ctx);
+  });
+
+  router.post("/shop/redact", (ctx) => {
+    ctx.status = 200;
+    ctx.body = makeResponse(ctx);
+  });
+
+  router.post("/customers/data_request", (ctx) => {
+    ctx.status = 200;
+    ctx.body = makeResponse(ctx);
+  });
+
+  // End GDPR endpoints
 
   // Create threekit shop-wide metafield
-  router.get("/api/makeMeta/:value", async ctx => {
+  router.get("/api/makeMeta/:value", async (ctx) => {
     try {
       const results = await fetch(
         "https://" +
@@ -59,7 +82,7 @@ app.prepare().then(() => {
           headers: {
             "X-Shopify-Access-Token": ctx.cookies.get("accessToken"),
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           method: "POST",
           body: JSON.stringify({
@@ -67,19 +90,19 @@ app.prepare().then(() => {
               namespace: "threekit",
               key: "token",
               value: `${ctx.params.value}`,
-              value_type: "string"
-            }
-          })
+              value_type: "string",
+            },
+          }),
         }
       )
-        .then(response => response.json())
-        .then(json => {
+        .then((response) => response.json())
+        .then((json) => {
           // console.log(JSON.parse(json))
           return json;
         });
       ctx.body = {
         status: "success",
-        data: results
+        data: results,
       };
     } catch (err) {
       console.log(err);
@@ -88,7 +111,7 @@ app.prepare().then(() => {
 
   // Insert threekit-products into the metafield.
   // You will need to get all of the values and then submit them together in order to retain data
-  router.get("/api/insertMeta/:id/:value", async ctx => {
+  router.get("/api/insertMeta/:id/:value", async (ctx) => {
     try {
       const results = await fetch(
         "https://" +
@@ -100,46 +123,47 @@ app.prepare().then(() => {
           headers: {
             "X-Shopify-Access-Token": ctx.cookies.get("accessToken"),
             Accept: "application/json",
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
           },
           method: "PUT",
           body: JSON.stringify({
             metafield: {
               id: ctx.params.id,
               value: `${ctx.params.value}`,
-              value_type: "string"
-            }
-          })
+              value_type: "string",
+            },
+          }),
         }
       )
-        .then(response => response.json())
-        .then(json => {
+        .then((response) => response.json())
+        .then((json) => {
           // console.log(JSON.parse(json))
           return json;
         });
       ctx.body = {
         status: "success",
-        data: results
+        data: results,
       };
     } catch (err) {
       console.log(err);
     }
   });
 
-  
+  // Create threekit shop-wide metafield
+
   // Routes for API
   server.use(router.routes());
 
   server.use(graphQLProxy({ version: ApiVersion.October19 }));
-  server.use(verifyRequest({authRoute: '/auth', fallbackRoute: '/auth'}));
-  server.use(async ctx => {
+  server.use(verifyRequest({ authRoute: "/auth", fallbackRoute: "/auth" }));
+  server.use(async (ctx) => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
     ctx.res.statusCode = 200;
     return;
   });
 
-  server.use(async ctx => {
+  server.use(async (ctx) => {
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
     ctx.res.statusCode = 200;

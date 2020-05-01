@@ -51,6 +51,31 @@ const GET_TK_PRODUCT_IDS = gql`
   }
 `;
 
+const GET_ALL_PRODCUTS = gql`
+query {
+  products(first: 50) {
+    edges {
+      cursor
+      node {
+        id
+        title
+        handle
+        descriptionHtml
+        images(first: 1) {
+          edges {
+            node {
+              originalSrc
+              altText
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+`
+
 const GET_TK_ASSET_ID = gql`
   query($id: ID!) {
     product(id: $id) {
@@ -142,22 +167,22 @@ class ResourceListWithProducts extends React.Component {
   static contextType = Context;
   render() {
     const app = this.context;
-    const redirectToProduct = () => {
-      const redirect = Redirect.create(app);
-      redirect.dispatch(Redirect.Action.APP, "/edit-products");
-    };
+    // const redirectToProduct = () => {
+    //   const redirect = Redirect.create(app);
+    //   redirect.dispatch(Redirect.Action.APP, "/edit-products");
+    // };
 
     return (
-      <div>
+      <div style={{margin: 'auto'}}>
         <Frame>
-          <Query
+          {/* <Query
             query={GET_TK_PRODUCT_IDS}
             onCompleted={(data) => this._queryMe(data)}
           >
             {() => {
               return <div>{""}</div>;
             }}
-          </Query>{" "}
+          </Query>{" "} */}
           <Query
             query={GET_META_ID}
             onCompleted={(data) => this._setTkMetafieldId(data)}

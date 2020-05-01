@@ -1,5 +1,234 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/index.js"],{
 
+/***/ "./components/AllProductResource.js":
+/*!******************************************!*\
+  !*** ./components/AllProductResource.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/createClass */ "./node_modules/@babel/runtime/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inherits */ "./node_modules/@babel/runtime/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/esm/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-apollo */ "./node_modules/react-apollo/lib/react-apollo.esm.js");
+/* harmony import */ var _shopify_polaris__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @shopify/polaris */ "./node_modules/@shopify/polaris/index.es.js");
+/* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! store-js */ "./node_modules/store-js/dist/store.legacy.js");
+/* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(store_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _ThreekitForm__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./ThreekitForm */ "./components/ThreekitForm.js");
+/* harmony import */ var _shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @shopify/app-bridge-react */ "./node_modules/@shopify/app-bridge-react/index.js");
+/* harmony import */ var _shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _components_Loading__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/Loading */ "./components/Loading.js");
+
+
+
+
+
+
+
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
+
+function _createSuper(Derived) { return function () { var Super = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = Object(_babel_runtime_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return Object(_babel_runtime_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _templateObject2() {
+  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\n  query($id: ID!) {\n    product(id: $id) {\n      metafield(namespace: \"threekit\", key: \"assetid\") {\n        value\n        id\n      }\n    }\n  }\n"]);
+
+  _templateObject2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject() {
+  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\nquery {\n  products(first: 50) {\n    edges {\n      cursor\n      node {\n        id\n        title\n        handle\n        descriptionHtml\n        images(first: 1) {\n          edges {\n            node {\n              originalSrc\n              altText\n            }\n          }\n        }\n      }\n    }\n  }\n}\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+
+
+
+
+
+
+var GET_ALL_PRODCUTS = graphql_tag__WEBPACK_IMPORTED_MODULE_9___default()(_templateObject());
+var GET_TK_ASSET_ID = graphql_tag__WEBPACK_IMPORTED_MODULE_9___default()(_templateObject2());
+
+var AllProductResource = /*#__PURE__*/function (_React$Component) {
+  Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(AllProductResource, _React$Component);
+
+  var _super = _createSuper(AllProductResource);
+
+  function AllProductResource() {
+    var _this;
+
+    Object(_babel_runtime_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, AllProductResource);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "state", {
+      ids: [],
+      tkId: {},
+      field: "",
+      active: false,
+      checked: false,
+      tkMetaFieldId: ""
+    });
+
+    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "_queryMe", function (data) {
+      if (data.shop.metafield == null) {
+        return null;
+      } else {
+        var str = JSON.parse(data.shop.metafield.value);
+        var arr;
+        arr = str.ids.split(",");
+
+        _this.setState({
+          ids: arr.map(function (id) {
+            return "gid://shopify/Product/" + id;
+          })
+        });
+      }
+    });
+
+    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "_setTkID", function (data) {
+      _this.setState({
+        tkId: data
+      });
+    });
+
+    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "_setTkMetafieldId", function (data) {
+      _this.setState({
+        tkMetaFieldId: JSON.stringify(data)
+      });
+    });
+
+    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "getTkAsset", function () {
+      return __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_10__["Query"], {
+        query: GET_TK_ASSET_ID,
+        onCompleted: function onCompleted(data) {
+          return _this._setTkID(data);
+        }
+      }, function () {
+        return null;
+      });
+    });
+
+    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "handleTKChange", function (e) {
+      _this.setState({
+        field: e
+      });
+    });
+
+    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "handleCheck", function () {
+      !_this.state.checked ? _this.setState({
+        checked: true
+      }) : _this.setState({
+        checked: false
+      });
+    });
+
+    Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "handleToggle", function () {
+      return !_this.state.active ? _this.setState({
+        active: true
+      }) : _this.setState({
+        active: false
+      });
+    });
+
+    return _this;
+  }
+
+  Object(_babel_runtime_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(AllProductResource, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return __jsx("div", {
+        style: {
+          margin: 'auto',
+          width: '95%'
+        }
+      }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__["Frame"], null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_10__["Query"], {
+        query: GET_ALL_PRODCUTS
+      }, function (_ref) {
+        var data = _ref.data,
+            loading = _ref.loading,
+            error = _ref.error;
+        if (loading) return __jsx(_components_Loading__WEBPACK_IMPORTED_MODULE_15__["LoadingScreen"], null);
+        if (error) return __jsx("div", null, error.message);
+        console.log(data);
+        return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__["Card"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__["ResourceList"], {
+          showHeader: true,
+          resourceName: {
+            singular: "Product",
+            plural: "Products"
+          },
+          items: data.products.edges,
+          renderItem: function renderItem(item) {
+            var media = __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__["Thumbnail"], {
+              source: item.node.images.edges[0] ? item.node.images.edges[0].node.originalSrc : "",
+              alt: item.node.images.edges[0] ? item.node.images.edges[0].node.altText : ""
+            }); //   const price = item.variants.edges[0].node.price;
+
+
+            return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__["ResourceList"].Item, {
+              id: item.node.id,
+              media: media,
+              accessibilityLabel: "View details for ".concat(item.node.title)
+            }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__["Stack"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__["Stack"].Item, {
+              fill: true
+            }, __jsx(_ThreekitForm__WEBPACK_IMPORTED_MODULE_13__["default"], {
+              query: GET_TK_ASSET_ID,
+              title: item.node.title,
+              id: {
+                id: item.node.id
+              },
+              field: _this2.state.field,
+              handleTKChange: _this2.handleTKChange,
+              handleCheckChange: _this2.handleCheck,
+              checked: _this2.state.checked,
+              tkMetafieldId: _this2.state.tkMetaFieldId
+            }))));
+          }
+        }));
+      })));
+    }
+  }]);
+
+  return AllProductResource;
+}(react__WEBPACK_IMPORTED_MODULE_8___default.a.Component);
+
+Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(AllProductResource, "contextType", _shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_14__["Context"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (AllProductResource);
+
+/***/ }),
+
 /***/ "./components/Loading.js":
 /*!*******************************!*\
   !*** ./components/Loading.js ***!
@@ -79,6 +308,16 @@ function _createSuper(Derived) { return function () { var Super = Object(_babel_
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
+function _templateObject5() {
+  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\n  query($id: ID!) {\n    product(id: $id) {\n      metafield(namespace: \"threekit\", key: \"assetid\") {\n        value\n        id\n      }\n    }\n  }\n"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject4() {
   var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\n  query($id: ID!) {\n    product(id: $id) {\n      metafield(namespace: \"threekit\", key: \"assetid\") {\n        value\n        id\n      }\n    }\n  }\n"]);
 
@@ -90,7 +329,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\n  query($id: ID!) {\n    product(id: $id) {\n      metafield(namespace: \"threekit\", key: \"assetid\") {\n        value\n        id\n      }\n    }\n  }\n"]);
+  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\nquery {\n  products(first: 50) {\n    edges {\n      cursor\n      node {\n        id\n        title\n        handle\n        descriptionHtml\n        images(first: 1) {\n          edges {\n            node {\n              originalSrc\n              altText\n            }\n          }\n        }\n      }\n    }\n  }\n}\n\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -135,8 +374,9 @@ var link = Object(apollo_link_http__WEBPACK_IMPORTED_MODULE_18__["createHttpLink
 });
 var GET_PRODUCTS_BY_ID = graphql_tag__WEBPACK_IMPORTED_MODULE_9___default()(_templateObject());
 var GET_TK_PRODUCT_IDS = graphql_tag__WEBPACK_IMPORTED_MODULE_9___default()(_templateObject2());
-var GET_TK_ASSET_ID = graphql_tag__WEBPACK_IMPORTED_MODULE_9___default()(_templateObject3());
-var GET_META_ID = graphql_tag__WEBPACK_IMPORTED_MODULE_9___default()(_templateObject4());
+var GET_ALL_PRODCUTS = graphql_tag__WEBPACK_IMPORTED_MODULE_9___default()(_templateObject3());
+var GET_TK_ASSET_ID = graphql_tag__WEBPACK_IMPORTED_MODULE_9___default()(_templateObject4());
+var GET_META_ID = graphql_tag__WEBPACK_IMPORTED_MODULE_9___default()(_templateObject5());
 
 var ResourceListWithProducts = /*#__PURE__*/function (_React$Component) {
   Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(ResourceListWithProducts, _React$Component);
@@ -232,21 +472,16 @@ var ResourceListWithProducts = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var app = this.context;
+      var app = this.context; // const redirectToProduct = () => {
+      //   const redirect = Redirect.create(app);
+      //   redirect.dispatch(Redirect.Action.APP, "/edit-products");
+      // };
 
-      var redirectToProduct = function redirectToProduct() {
-        var redirect = _shopify_app_bridge_actions__WEBPACK_IMPORTED_MODULE_14__["Redirect"].create(app);
-        redirect.dispatch(_shopify_app_bridge_actions__WEBPACK_IMPORTED_MODULE_14__["Redirect"].Action.APP, "/edit-products");
-      };
-
-      return __jsx("div", null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__["Frame"], null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_10__["Query"], {
-        query: GET_TK_PRODUCT_IDS,
-        onCompleted: function onCompleted(data) {
-          return _this2._queryMe(data);
+      return __jsx("div", {
+        style: {
+          margin: 'auto'
         }
-      }, function () {
-        return __jsx("div", null, "");
-      }), " ", __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_10__["Query"], {
+      }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_11__["Frame"], null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_10__["Query"], {
         query: GET_META_ID,
         onCompleted: function onCompleted(data) {
           return _this2._setTkMetafieldId(data);
@@ -653,14 +888,7 @@ function ThreekitForm(props) {
         id: data.product.id,
         ariaControls: data.product.id,
         placeholder: !data.product.metafield ? "No Threekit ID" : data.product.metafield.value,
-        connectedRight: __jsx("div", null, __jsx(_components_SnippetGen__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          handleChange: handleModalChange,
-          active: modalActive,
-          title: "".concat(props.title),
-          assetid: !data.product.metafield ? "No Threekit ID" : data.product.metafield.value,
-          ar: "true",
-          env: "preview"
-        }), __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Button"], {
+        connectedRight: __jsx("div", null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Button"], {
           primary: true,
           onClick: function onClick() {
             var productVariableInput;
@@ -694,9 +922,7 @@ function ThreekitForm(props) {
               }
             });
           }
-        }, "Save"), __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Button"], {
-          onClick: handleModalChange
-        }, "Embed this product"))
+        }, "Save"))
       }));
     })));
   }), __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Stack"].Item, null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Query"], {
@@ -878,7 +1104,11 @@ function TokenForm(props) {
   var handleChange = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(function (newValue) {
     return setTkToken(newValue);
   }, []);
-  return __jsx("div", null, !isSaved ? __jsx("div", null) : __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Frame"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Toast"], {
+  return __jsx("div", {
+    style: {
+      margin: "30px"
+    }
+  }, !isSaved ? __jsx("div", null) : __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Frame"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Toast"], {
     content: "Saved",
     onDismiss: function onDismiss() {
       return setIsSaved(false);
@@ -895,18 +1125,22 @@ function TokenForm(props) {
         refetch = _ref.refetch;
     if (loading) return __jsx(_components_Loading__WEBPACK_IMPORTED_MODULE_5__["LoadingText"], null);
     if (error) return "Error! ".concat(error);
-    return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["TextField"], {
+
+    var submitForm = function submitForm() {
+      !data.shop.metafield ? makeShopMetafield(tkToken) : updateShopMetafield(data.shop.metafield.id.split("Metafield/")[1], tkToken);
+    };
+
+    return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Form"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["TextField"], {
       label: "Threekit Token",
       value: tkToken,
+      minLength: 5,
       onChange: handleChange,
-      placeholder: !data.shop.metafield ? "No Threekit Token" : data.shop.metafield.value,
+      placeholder: !data.shop.metafield ? "No Threekit Token" : JSON.stringify(data.shop.metafield.value),
       connectedRight: __jsx("div", null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_4__["Button"], {
         primary: true,
-        onClick: function onClick() {
-          return !data.shop.metafield ? makeShopMetafield(tkToken) : updateShopMetafield(data.shop.metafield.id.split("Metafield/")[1], tkToken);
-        }
+        onClick: submitForm
       }, "Save"))
-    });
+    }));
   }));
 }
 
@@ -74994,12 +75228,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! store-js */ "./node_modules/store-js/dist/store.legacy.js");
 /* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(store_js__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _components_ResourceList__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/ResourceList */ "./components/ResourceList.js");
-/* harmony import */ var _components_TokenForm__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/TokenForm */ "./components/TokenForm.js");
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-apollo */ "./node_modules/react-apollo/lib/react-apollo.esm.js");
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! node-fetch */ "./node_modules/node-fetch/browser.js");
-/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _components_AllProductResource__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/AllProductResource */ "./components/AllProductResource.js");
+/* harmony import */ var _components_TokenForm__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/TokenForm */ "./components/TokenForm.js");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! graphql-tag */ "./node_modules/graphql-tag/src/index.js");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-apollo */ "./node_modules/react-apollo/lib/react-apollo.esm.js");
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! node-fetch */ "./node_modules/node-fetch/browser.js");
+/* harmony import */ var node_fetch__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(node_fetch__WEBPACK_IMPORTED_MODULE_17__);
 
 
 
@@ -75016,7 +75251,7 @@ function _createSuper(Derived) { return function () { var Super = Object(_babel_
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _templateObject() {
-  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\nquery {\n  shop{\n    metafield(namespace: \"threekit\", key: \"token\") {\n      id,\n      value\n    }\n  }\n}\n"]);
+  var data = Object(_babel_runtime_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_7__["default"])(["\n  query {\n    shop {\n      metafield(namespace: \"threekit\", key: \"token\") {\n        id\n        value\n      }\n    }\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -75032,9 +75267,10 @@ function _templateObject() {
 
 
 
+
  // Get the shop's threekit metafield
 
-var GET_TK_METAFIELD = graphql_tag__WEBPACK_IMPORTED_MODULE_14___default()(_templateObject());
+var GET_TK_METAFIELD = graphql_tag__WEBPACK_IMPORTED_MODULE_15___default()(_templateObject());
 
 var Index = /*#__PURE__*/function (_React$Component) {
   Object(_babel_runtime_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_3__["default"])(Index, _React$Component);
@@ -75057,7 +75293,7 @@ var Index = /*#__PURE__*/function (_React$Component) {
       hasSrc: false,
       shop: "",
       tkMetaId: {},
-      metaID: ''
+      metaID: ""
     });
 
     Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "_queryMe", function (data) {
@@ -75066,14 +75302,14 @@ var Index = /*#__PURE__*/function (_React$Component) {
       } else {
         _this.setState({
           tkMetaId: data,
-          metaID: data.shop.metafield.id.split('Metafield/')[1]
+          metaID: data.shop.metafield.id.split("Metafield/")[1]
         });
       }
     });
 
     Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "_checkIfTK", function () {
       if (_this.state.tkMetaId.shop.metafield == null) {
-        console.log('no TK id');
+        console.log("no TK id");
       } else {
         console.log("Yes this is TK");
       }
@@ -75081,14 +75317,14 @@ var Index = /*#__PURE__*/function (_React$Component) {
 
     Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "_formatProductID", function (arr) {
       arr.map(function (x) {
-        return x.split('Product/')[1];
+        return x.split("Product/")[1];
       });
     });
 
     Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "getShopMetafield", function () {
       var fetchUrl = "/api/shopMeta";
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_16___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_17___default()(fetchUrl, {
         method: method
       }).then(function (response) {
         return response.json();
@@ -75100,7 +75336,7 @@ var Index = /*#__PURE__*/function (_React$Component) {
     Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "updateShopMetafield", function (id, val) {
       var fetchUrl = "/api/insertMeta/".concat(id, "/").concat(val);
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_16___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_17___default()(fetchUrl, {
         method: method
       }).then(function (response) {
         return response.json();
@@ -75112,7 +75348,7 @@ var Index = /*#__PURE__*/function (_React$Component) {
     Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "makeScript", function () {
       var fetchUrl = "/make/script_tags";
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_16___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_17___default()(fetchUrl, {
         method: method
       }).then(function (response) {
         return response.json();
@@ -75124,14 +75360,14 @@ var Index = /*#__PURE__*/function (_React$Component) {
     Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "makeShopMetafield", function (val) {
       var fetchUrl;
 
-      if (val == 'undefined') {
+      if (val == "undefined") {
         fetchUrl = "/api/makeMeta/";
       } else {
         fetchUrl = "/api/makeMeta/" + val;
       }
 
       var method = "GET";
-      node_fetch__WEBPACK_IMPORTED_MODULE_16___default()(fetchUrl, {
+      node_fetch__WEBPACK_IMPORTED_MODULE_17___default()(fetchUrl, {
         method: method
       }).then(function (response) {
         return response.json();
@@ -75142,6 +75378,9 @@ var Index = /*#__PURE__*/function (_React$Component) {
       var idsFromResources = resources.selection.map(function (product) {
         return product.id;
       });
+      console.log(resources.selection.map(function (product) {
+        return product.id;
+      }));
 
       _this.setState({
         open: false
@@ -75157,15 +75396,16 @@ var Index = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // console.log(this.state)
-      store_js__WEBPACK_IMPORTED_MODULE_11___default.a.remove('ids');
+      store_js__WEBPACK_IMPORTED_MODULE_11___default.a.remove("ids");
+      console.log(store_js__WEBPACK_IMPORTED_MODULE_11___default.a.get("ids"));
       store_js__WEBPACK_IMPORTED_MODULE_11___default.a.each(function (value, key) {
-        console.log(key, '==', value);
+        console.log(key, "==", value);
       });
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      store_js__WEBPACK_IMPORTED_MODULE_11___default.a.remove('ids');
+      store_js__WEBPACK_IMPORTED_MODULE_11___default.a.remove("ids");
     }
   }, {
     key: "render",
@@ -75175,7 +75415,7 @@ var Index = /*#__PURE__*/function (_React$Component) {
       var emptyState = !store_js__WEBPACK_IMPORTED_MODULE_11___default.a.get("ids");
       return __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["Page"], null, __jsx(_shopify_app_bridge_react__WEBPACK_IMPORTED_MODULE_10__["TitleBar"], {
         primaryAction: {
-          content: "Select products",
+          content: "Narrow Product List",
           onAction: function onAction() {
             return _this2.setState({
               open: true
@@ -75194,18 +75434,16 @@ var Index = /*#__PURE__*/function (_React$Component) {
             open: false
           });
         }
-      }), __jsx("div", null, __jsx(_components_TokenForm__WEBPACK_IMPORTED_MODULE_13__["default"], null)), emptyState ? __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["Layout"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["EmptyState"], {
-        heading: "Associate a Shopify product with a Threekit item.",
-        action: {
-          content: "Select products",
-          onAction: function onAction() {
-            return _this2.setState({
-              open: true
-            });
-          }
-        },
-        image: "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg"
-      }, __jsx("p", null, "Select products to associate it with a Threekit item."))) : __jsx("div", null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_15__["Query"], {
+      }), __jsx("div", null, __jsx("div", {
+        style: {
+          marginBottom: "30px"
+        }
+      }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["Card"], {
+        title: "Welcome to Threekit's Shopify Connector.",
+        sectioned: true
+      }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["TextContainer"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["TextStyle"], {
+        variation: "subdued"
+      }, "All of your Shopify products are listed below unless you have selected otherwise. To manage individual or several products, please narrow your product list.", " "))))), emptyState ? __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["Layout"], null, __jsx(_components_AllProductResource__WEBPACK_IMPORTED_MODULE_13__["default"], null)) : __jsx("div", null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_16__["Query"], {
         query: GET_TK_METAFIELD,
         onCompleted: function onCompleted(data) {
           return _this2._queryMe(data);
