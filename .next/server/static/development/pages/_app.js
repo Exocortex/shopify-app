@@ -477,7 +477,7 @@ class MyApp extends next_app__WEBPACK_IMPORTED_MODULE_1___default.a {
       pageProps
     } = this.props;
     const config = {
-      apiKey: "843051a71f626132d541934001fc72dc",
+      apiKey: "8f44a1c54196c604abd1c52796d0b7d2",
       shopOrigin: js_cookie__WEBPACK_IMPORTED_MODULE_7___default.a.get("shopOrigin"),
       forceRedirect: true
     };

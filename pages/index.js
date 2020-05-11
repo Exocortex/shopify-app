@@ -147,7 +147,8 @@ class Index extends React.Component {
           <TextStyle variation="subdued">
             All of your Shopify products are listed below unless you have selected otherwise. To
             manage individual or several products, please narrow your product list.{" "}
-          </TextStyle>
+          </TextStyle><br/>
+          <TextStyle variation="negative">If you do not see a 3D player on your product page, please visit the <a href="/help">help</a> page to troubleshoot.</TextStyle>
           </TextContainer>
           </Card>
           </div>

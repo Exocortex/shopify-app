@@ -75443,7 +75443,11 @@ var Index = /*#__PURE__*/function (_React$Component) {
         sectioned: true
       }, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["TextContainer"], null, __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["TextStyle"], {
         variation: "subdued"
-      }, "All of your Shopify products are listed below unless you have selected otherwise. To manage individual or several products, please narrow your product list.", " "))))), emptyState ? __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["Layout"], null, __jsx(_components_AllProductResource__WEBPACK_IMPORTED_MODULE_13__["default"], null)) : __jsx("div", null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_16__["Query"], {
+      }, "All of your Shopify products are listed below unless you have selected otherwise. To manage individual or several products, please narrow your product list.", " "), __jsx("br", null), __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["TextStyle"], {
+        variation: "negative"
+      }, "If you do not see a 3D player on your product page, please visit the ", __jsx("a", {
+        href: "/help"
+      }, "help"), " page to troubleshoot."))))), emptyState ? __jsx(_shopify_polaris__WEBPACK_IMPORTED_MODULE_9__["Layout"], null, __jsx(_components_AllProductResource__WEBPACK_IMPORTED_MODULE_13__["default"], null)) : __jsx("div", null, __jsx(react_apollo__WEBPACK_IMPORTED_MODULE_16__["Query"], {
         query: GET_TK_METAFIELD,
         onCompleted: function onCompleted(data) {
           return _this2._queryMe(data);

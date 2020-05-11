@@ -19,7 +19,16 @@ function Help() {
               to resources below.
             </p>
             <Card.Section>
+            Don't see a 3D player?
+
             <List>
+            <List.Item>
+                <a href="https://solutions-engineering.s3.amazonaws.com/Connectors/Shopify/Threekit+for+Shopify+User+Guide.pdf" target="_blank"><p>Text walkthrough</p></a>
+              </List.Item>
+              <List.Item>
+                <a href="https://www.youtube.com/watch?v=z54yVv_MAX0&feature=youtu.be" target="_blank"><p>Video walkthrough</p></a>
+              </List.Item>
+              <br/>
               <List.Item>
                 <a href="https://docs.threekit.com/docs" target="_blank"><p>Threekit Documentation</p></a>
               </List.Item>
