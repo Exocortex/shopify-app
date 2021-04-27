@@ -38,7 +38,11 @@ app.prepare().then(() => {
           secure: true,
           sameSite: "none",
         });
-        ctx.cookies.set("accessToken", accessToken);
+        ctx.cookies.set("accessToken", accessToken, {
+          httpOnly: false,
+          secure: true,
+          sameSite: "none",
+        });
         ctx.redirect("/");
       },
     })
@@ -73,6 +77,7 @@ app.prepare().then(() => {
 
   // Create threekit shop-wide metafield
   router.get("/api/makeMeta/:value", async (ctx) => {
+    console.log(ctx.cookies.get("accessToken"));
     try {
       const results = await fetch(
         "https://" +
