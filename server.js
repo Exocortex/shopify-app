@@ -77,7 +77,6 @@ app.prepare().then(() => {
 
   // Create threekit shop-wide metafield
   router.get("/api/makeMeta/:value", async (ctx) => {
-    console.log(ctx.cookies.get("accessToken"));
     try {
       const results = await fetch(
         "https://" +
