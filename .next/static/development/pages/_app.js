@@ -73958,7 +73958,7 @@ var MyApp = /*#__PURE__*/function (_App) {
           Component = _this$props.Component,
           pageProps = _this$props.pageProps;
       var config = {
-        apiKey: "8f44a1c54196c604abd1c52796d0b7d2",
+        apiKey: "99d7951f94281dfe5af53fa90c808c98",
         shopOrigin: js_cookie__WEBPACK_IMPORTED_MODULE_12___default.a.get("shopOrigin"),
         forceRedirect: true
       };
@@ -73989,7 +73989,7 @@ var MyApp = /*#__PURE__*/function (_App) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! next-client-pages-loader?page=%2F_app&absolutePagePath=private-next-pages%2F_app.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F_app&absolutePagePath=private-next-pages%2F_app.js!./");
-module.exports = __webpack_require__(/*! /Users/willthompson/Documents/ThreeKit/Shopify/shopify-tutorial/node_modules/next/dist/client/router.js */"./node_modules/next/dist/client/router.js");
+module.exports = __webpack_require__(/*! /Users/willthompson/Documents/ThreeKit/Shopify/shopify-connector/node_modules/next/dist/client/router.js */"./node_modules/next/dist/client/router.js");
 
 
 /***/ }),

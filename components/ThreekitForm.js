@@ -120,7 +120,7 @@ function ThreekitForm(props) {
                 namespace: namespace,
                 key: key,
                 value: "false",
-                valueType: "STRING",
+                type: "STRING",
               },
             ],
           })
@@ -131,7 +131,7 @@ function ThreekitForm(props) {
                 namespace: namespace,
                 key: key,
                 value: "true",
-                valueType: "STRING",
+                type: "STRING",
               },
             ],
           });
@@ -144,7 +144,7 @@ function ThreekitForm(props) {
                 namespace: namespace,
                 key: key,
                 value: "false",
-                valueType: "STRING",
+                type: "STRING",
                 id: obj.product.metafield.id,
               },
             ],
@@ -156,7 +156,7 @@ function ThreekitForm(props) {
                 namespace: namespace,
                 key: key,
                 value: "true",
-                valueType: "STRING",
+                type: "STRING",
                 id: obj.product.metafield.id,
               },
             ],
@@ -266,7 +266,7 @@ function ThreekitForm(props) {
                                                 namespace: "threekit",
                                                 key: "assetid",
                                                 value: value,
-                                                valueType: "STRING",
+                                                type: "STRING",
                                               },
                                             ],
                                           };
@@ -278,7 +278,7 @@ function ThreekitForm(props) {
                                                 namespace: "threekit",
                                                 key: "assetid",
                                                 value: value,
-                                                valueType: "STRING",
+                                                type: "STRING",
                                                 id:
                                                   tkMetaId.product.metafield.id,
                                               },

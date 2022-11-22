@@ -67397,10 +67397,10 @@ module.exports = (__webpack_require__(/*! dll-reference dll_839099f27aa445711cff
 
 /***/ }),
 
-/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-tutorial%2Fpages%2Findex.js!./":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-tutorial%2Fpages%2Findex.js ***!
-  \***********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-connector%2Fpages%2Findex.js!./":
+/*!************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-connector%2Fpages%2Findex.js ***!
+  \************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -75466,13 +75466,13 @@ var Index = /*#__PURE__*/function (_React$Component) {
 /***/ }),
 
 /***/ 2:
-/*!***************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-tutorial%2Fpages%2Findex.js ***!
-  \***************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-connector%2Fpages%2Findex.js ***!
+  \****************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-tutorial%2Fpages%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-tutorial%2Fpages%2Findex.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-connector%2Fpages%2Findex.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=%2FUsers%2Fwillthompson%2FDocuments%2FThreeKit%2FShopify%2Fshopify-connector%2Fpages%2Findex.js!./");
 
 
 /***/ }),
