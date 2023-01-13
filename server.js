@@ -81,7 +81,7 @@ app.prepare().then(() => {
       const results = await fetch(
         "https://" +
           ctx.cookies.get("shopOrigin") +
-          "/admin/api/2020-01/metafields.json",
+          "/admin/api/2023-01/metafields.json",
         {
           headers: {
             "X-Shopify-Access-Token": ctx.cookies.get("accessToken"),
@@ -120,7 +120,7 @@ app.prepare().then(() => {
       const results = await fetch(
         "https://" +
           ctx.cookies.get("shopOrigin") +
-          "/admin/api/2020-01/metafields/" +
+          "/admin/api/2023-01/metafields/" +
           ctx.params.id +
           ".json",
         {
