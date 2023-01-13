@@ -27,7 +27,7 @@ app.prepare().then(() => {
 
   server.use(
     createShopifyAuth({
-      apiKey: NEXT_PUBLIC_SHOPIFY_API_KEY,
+      apiKey: SHOPIFY_API_KEY,
       secret: SHOPIFY_API_SECRET_KEY,
       scopes: ["read_products", "write_products", "write_script_tags"],
       afterAuth(ctx) {
